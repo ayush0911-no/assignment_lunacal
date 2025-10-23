@@ -68,6 +68,13 @@ export function ImageGallery() {
 
   return (
     <div className="space-y-4 rounded-xl bg-card/50 p-4 border">
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleImageUpload}
+          className="hidden"
+          accept="image/*"
+        />
         <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-2">
                  <Button variant="ghost" size="icon" className="text-muted-foreground">
