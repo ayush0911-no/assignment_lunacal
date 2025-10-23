@@ -9,10 +9,8 @@ export function AboutTab() {
   const { layout, toggleLayout } = useImageGallery();
   return (
     <Card className="bg-card/50">
-      <CardHeader>
+      <CardHeader className="flex-row items-center justify-between">
         <CardTitle>About Me</CardTitle>
-      </CardHeader>
-      <CardContent className="flex gap-4">
         <Button
           variant="ghost"
           size="icon"
@@ -26,6 +24,8 @@ export function AboutTab() {
             <LayoutGrid className="h-5 w-5" />
           )}
         </Button>
+      </CardHeader>
+      <CardContent>
         <div className="space-y-4 text-muted-foreground">
           <p>
             Hello! I'm a passionate professional with extensive experience in
