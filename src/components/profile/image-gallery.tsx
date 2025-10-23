@@ -125,7 +125,7 @@ export function ImageGallery() {
           >
             <HelpCircle className="h-5 w-5" />
           </Button>
-          <div className="bg-foreground text-background font-semibold px-6 py-2 rounded-xl text-sm">
+          <div className="bg-black text-white font-semibold px-6 py-2 rounded-xl text-sm">
             Gallery
           </div>
         </div>
@@ -133,7 +133,7 @@ export function ImageGallery() {
           <Button
             onClick={triggerFileSelect}
             variant="default"
-            className="rounded-full shadow-[inset_0_2px_4px_0_rgba(255,255,255,0.05),0_4px_6px_rgba(0,0,0,0.1)] hover:shadow-[inset_0_2px_6px_0_rgba(255,255,255,0.06),0_6px_8px_rgba(0,0,0,0.15)]"
+            className="rounded-full shadow-[inset_0_2px_4px_0_rgba(255,255,255,0.05),0_4px_6px_rgba(0,0,0,0.1)] hover:shadow-[inset_0_2px_6px_0_rgba(255,255,255,0.06),0_6px_8px_rgba(0,0,0,0.15)] bg-card text-card-foreground hover:bg-card/80"
           >
             <ImagePlus className="mr-2 h-4 w-4" />
             Add Image
@@ -142,7 +142,7 @@ export function ImageGallery() {
             onClick={showPrevImage}
             variant="secondary"
             size="icon"
-            className="rounded-full shadow-[inset_0_2px_4px_0_rgba(255,255,255,0.05),0_4px_6px_rgba(0,0,0,0.1)] hover:shadow-[inset_0_2px_6px_0_rgba(255,255,255,0.06),0_6px_8px_rgba(0,0,0,0.15)]"
+            className="rounded-full shadow-[inset_0_2px_4px_0_rgba(255,255,255,0.05),0_4px_6px_rgba(0,0,0,0.1)] hover:shadow-[inset_0_2px_6px_0_rgba(255,255,255,0.06),0_6px_8px_rgba(0,0,0,0.15)] bg-card text-card-foreground hover:bg-card/80"
             disabled={layout === "grid" || images.length < 2}
           >
             <ArrowLeft className="h-4 w-4" />
@@ -151,7 +151,7 @@ export function ImageGallery() {
             onClick={showNextImage}
             variant="secondary"
             size="icon"
-            className="rounded-full shadow-[inset_0_2px_4px_0_rgba(255,255,255,0.05),0_4px_6px_rgba(0,0,0,0.1)] hover:shadow-[inset_0_2px_6px_0_rgba(255,255,255,0.06),0_6px_8px_rgba(0,0,0,0.15)]"
+            className="rounded-full shadow-[inset_0_2px_4px_0_rgba(255,255,255,0.05),0_4px_6px_rgba(0,0,0,0.1)] hover:shadow-[inset_0_2px_6px_0_rgba(255,255,255,0.06),0_6px_8px_rgba(0,0,0,0.15)] bg-card text-card-foreground hover:bg-card/80"
             disabled={layout === "grid" || images.length < 2}
           >
             <ArrowRight className="h-4 w-4" />
