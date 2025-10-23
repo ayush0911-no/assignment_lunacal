@@ -9,8 +9,8 @@ import { RecommendedTab } from "@/components/profile/recommended-tab";
 export default function Home() {
   return (
     <main className="container mx-auto p-4 md:p-8">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-        <div className="lg:col-span-2">
+      <div className="grid grid-cols-1 gap-8 items-start">
+        <div className="w-full">
           <Tabs defaultValue="about" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="about">
@@ -34,7 +34,7 @@ export default function Home() {
             </TabsContent>
           </Tabs>
         </div>
-        <div className="lg:col-span-1 space-y-8">
+        <div className="space-y-8">
           <ImageGallery />
         </div>
       </div>
