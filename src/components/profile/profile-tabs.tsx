@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -10,14 +11,14 @@ export function ProfileTabs() {
   return (
     <div className="p-4">
       <Tabs defaultValue="about" className="w-full">
-        <TabsList className="grid w-full grid-cols-3 bg-black/90 p-1 rounded-full">
-          <TabsTrigger value="about" className="rounded-full">
+        <TabsList className="grid w-full grid-cols-3 bg-black/90 p-1 rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.4),_inset_0_2px_4px_rgba(255,255,255,0.05)]">
+          <TabsTrigger value="about" className="rounded-full text-gray-400 data-[state=active]:bg-black/50 data-[state=active]:text-white data-[state=active]:shadow-[inset_0_2px_4px_rgba(0,0,0,0.6),_0_2px_2px_rgba(255,255,255,0.05)]">
             <User className="mr-2 h-4 w-4" /> About Me
           </TabsTrigger>
-          <TabsTrigger value="experiences" className="rounded-full">
+          <TabsTrigger value="experiences" className="rounded-full text-gray-400 data-[state=active]:bg-black/50 data-[state=active]:text-white data-[state=active]:shadow-[inset_0_2px_4px_rgba(0,0,0,0.6),_0_2px_2px_rgba(255,255,255,0.05)]">
             <Briefcase className="mr-2 h-4 w-4" /> Experiences
           </TabsTrigger>
-          <TabsTrigger value="recommended" className="rounded-full">
+          <TabsTrigger value="recommended" className="rounded-full text-gray-400 data-[state=active]:bg-black/50 data-[state=active]:text-white data-[state=active]:shadow-[inset_0_2px_4px_rgba(0,0,0,0.6),_0_2px_2px_rgba(255,255,255,0.05)]">
             <ThumbsUp className="mr-2 h-4 w-4" /> Recommended
           </TabsTrigger>
         </TabsList>
