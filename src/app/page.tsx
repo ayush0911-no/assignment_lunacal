@@ -10,10 +10,6 @@ export default function Home() {
   return (
     <main className="container mx-auto p-4 md:p-8">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-        <div className="lg:col-span-1 space-y-8">
-          <ImageGallery />
-        </div>
-
         <div className="lg:col-span-2">
           <Tabs defaultValue="about" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
@@ -37,6 +33,9 @@ export default function Home() {
               <RecommendedTab />
             </TabsContent>
           </Tabs>
+        </div>
+        <div className="lg:col-span-1 space-y-8">
+          <ImageGallery />
         </div>
       </div>
     </main>
