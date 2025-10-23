@@ -15,7 +15,7 @@ export function ProfileTabs() {
     <div className="p-4">
       <Tabs defaultValue="about" className="w-full">
         <div className="flex justify-between items-center mb-4">
-          <TabsList className="grid w-full grid-cols-3 bg-card-foreground/10 p-1">
+          <TabsList className="grid w-full grid-cols-3 bg-black p-1">
             <TabsTrigger value="about">
               <User className="mr-2 h-4 w-4" /> About Me
             </TabsTrigger>
