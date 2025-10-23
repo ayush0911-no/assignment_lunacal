@@ -1,19 +1,24 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ImagePlus, Trash2, HelpCircle, ArrowLeft, ArrowRight, LayoutGrid } from "lucide-react";
+import { ImagePlus, Trash2, HelpCircle, ArrowLeft, ArrowRight, LayoutGrid, Square } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import type { ImagePlaceholder } from "@/lib/placeholder-images";
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 const initialImages = PlaceHolderImages.filter((img) =>
   img.id.startsWith("gallery")
 );
 
+type Layout = "grid" | "single";
+
 export function ImageGallery() {
   const [images, setImages] = useState<ImagePlaceholder[]>(initialImages);
+  const [layout, setLayout] = useState<Layout>("grid");
+  const [currentIndex, setCurrentIndex] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +42,29 @@ export function ImageGallery() {
       URL.revokeObjectURL(imageToRemove.imageUrl);
     }
     setImages(images.filter(image => image.id !== id));
+    if (currentIndex >= images.length - 1) {
+      setCurrentIndex(Math.max(0, images.length - 2));
+    }
   };
+
+  const toggleLayout = () => {
+    setLayout(prev => prev === "grid" ? "single" : "grid");
+  }
+
+  const showNextImage = () => {
+    setCurrentIndex(prev => (prev + 1) % images.length);
+  }
+
+  const showPrevImage = () => {
+    setCurrentIndex(prev => (prev - 1 + images.length) % images.length);
+  }
+
+  const visibleImages = useMemo(() => {
+    if (layout === 'single' && images.length > 0) {
+      return [images[currentIndex]];
+    }
+    return images;
+  }, [layout, images, currentIndex]);
 
   return (
     <div className="space-y-4 rounded-xl bg-card/50 p-4 border">
@@ -55,10 +82,10 @@ export function ImageGallery() {
                     <ImagePlus className="mr-2 h-4 w-4" />
                     Add Image
                 </Button>
-                <Button variant="secondary" size="icon" className="rounded-full">
+                <Button onClick={showPrevImage} variant="secondary" size="icon" className="rounded-full" disabled={layout === 'grid' || images.length < 2}>
                     <ArrowLeft className="h-4 w-4" />
                 </Button>
-                <Button variant="secondary" size="icon" className="rounded-full">
+                <Button onClick={showNextImage} variant="secondary" size="icon" className="rounded-full" disabled={layout === 'grid' || images.length < 2}>
                     <ArrowRight className="h-4 w-4" />
                 </Button>
             </div>
@@ -66,13 +93,18 @@ export function ImageGallery() {
       
         <div className="flex gap-4">
             <div className="flex flex-col gap-2 items-center">
-                <Button variant="ghost" size="icon" className="text-muted-foreground">
-                    <LayoutGrid className="h-5 w-5" />
+                <Button variant="ghost" size="icon" className="text-muted-foreground" onClick={toggleLayout} title="Toggle layout">
+                    {layout === 'grid' ? <Square className="h-5 w-5" /> : <LayoutGrid className="h-5 w-5" />}
                 </Button>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-                {images.map((image) => (
-                    <div key={image.id} className="p-1">
+            <div className={cn(
+              "w-full",
+              layout === 'grid' 
+                ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+                : "flex justify-center"
+            )}>
+                {visibleImages.map((image) => (
+                    <div key={image.id} className={cn("p-1", layout === 'single' ? 'w-full max-w-lg' : '')}>
                     <Card className="overflow-hidden group rounded-xl">
                       <CardContent className="relative flex aspect-[4/3] items-center justify-center p-0">
                         <Image
@@ -96,6 +128,11 @@ export function ImageGallery() {
                     </Card>
                   </div>
                 ))}
+                {images.length === 0 && (
+                  <div className="col-span-full flex items-center justify-center text-muted-foreground h-48">
+                    <p>No images in the gallery. Add some!</p>
+                  </div>
+                )}
             </div>
         </div>
     </div>
