@@ -2,12 +2,10 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { LayoutGrid, Square, HelpCircle } from "lucide-react";
-import { useImageGallery } from "./image-gallery";
+import { HelpCircle } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function AboutTab() {
-  const { layout, toggleLayout } = useImageGallery();
   return (
     <div className="flex gap-4">
       <div className="flex flex-col gap-4 items-center">
@@ -17,19 +15,6 @@ export function AboutTab() {
           className="text-muted-foreground"
         >
           <HelpCircle className="h-5 w-5" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="text-muted-foreground"
-          onClick={toggleLayout}
-          title="Toggle layout"
-        >
-          {layout === "grid" ? (
-            <Square className="h-5 w-5" />
-          ) : (
-            <LayoutGrid className="h-5 w-5" />
-          )}
         </Button>
       </div>
 

@@ -6,7 +6,6 @@ export default function Home() {
     <ImageGalleryProvider>
       <main className="min-h-screen bg-background font-sans text-foreground">
         <div className="grid min-h-screen md:grid-cols-2">
-          <div className="hidden md:block"></div>
           <div className="flex items-center justify-center p-4 md:p-8">
             <div className="w-full max-w-2xl mx-auto space-y-8">
               <div className="bg-card/50 rounded-xl border">
@@ -15,6 +14,7 @@ export default function Home() {
               <ImageGallery />
             </div>
           </div>
+          <div className="hidden md:block"></div>
         </div>
       </main>
     </ImageGalleryProvider>
