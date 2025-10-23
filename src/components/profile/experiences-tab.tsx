@@ -9,25 +9,25 @@ import { Badge } from "@/components/ui/badge";
 
 const experiences = [
   {
-    title: "Senior Software Engineer",
-    company: "Innovate Inc.",
-    period: "2020 - Present",
-    description: "Leading the development of a new cloud-native platform, focusing on microservices architecture and CI/CD pipelines. Mentoring junior developers and driving best practices in code quality and testing.",
-    skills: ["React", "Next.js", "TypeScript", "GraphQL", "AWS", "Docker"],
+    title: "Senior Developer",
+    company: "Future Forward",
+    period: "2021 - Present",
+    description: "Led the development of a cutting-edge platform, focusing on scalable architecture and continuous integration. Provided mentorship to team members and promoted best practices in software development.",
+    skills: ["React", "Next.js", "TypeScript", "Node.js", "Cloud Services", "DevOps"],
   },
   {
-    title: "Software Engineer",
-    company: "Tech Solutions",
-    period: "2017 - 2020",
-    description: "Developed and maintained features for a large-scale e-commerce website. Improved application performance by 30% through code optimization and database query tuning.",
-    skills: ["JavaScript", "React", "Redux", "Node.js", "PostgreSQL"],
+    title: "Software Developer",
+    company: "Digital Dynamics",
+    period: "2018 - 2021",
+    description: "Contributed to the development and enhancement of a major e-commerce platform. Achieved significant performance improvements through code optimization and database enhancements.",
+    skills: ["JavaScript", "React", "State Management", "REST APIs", "SQL"],
   },
   {
-    title: "Junior Developer",
-    company: "Code Crafters",
-    period: "2015 - 2017",
-    description: "Assisted in building responsive user interfaces and RESTful APIs for various client projects. Gained foundational experience in web development and version control with Git.",
-    skills: ["HTML", "CSS", "jQuery", "PHP", "MySQL", "Git"],
+    title: "Junior Engineer",
+    company: "Innovate Start",
+    period: "2016 - 2018",
+    description: "Gained hands-on experience in building responsive user interfaces and backend services for various projects. Developed a strong foundation in web technologies and version control systems.",
+    skills: ["HTML", "CSS", "JavaScript", "Backend Basics", "Git"],
   },
 ];
 

@@ -8,23 +8,19 @@ export function AboutTab() {
       </CardHeader>
       <CardContent className="space-y-4 text-muted-foreground">
         <p>
-          Hello! I'm John Doe, a passionate Senior Software Engineer with over a
-          decade of experience in building scalable and user-friendly web
-          applications. My journey in tech started with a fascination for how
-          things work, which evolved into a career dedicated to crafting elegant
-          code and robust systems.
+          Hello! I'm a passionate professional with extensive experience in creating
+          dynamic and user-friendly web applications. My journey in technology
+          is driven by a desire to build elegant and efficient solutions to
+          complex problems.
         </p>
         <p>
-          I thrive in collaborative environments, leveraging agile methodologies
-          to deliver high-quality products. My expertise lies in full-stack
-          development, with a strong focus on modern JavaScript frameworks like
-          React and Next.js, and backend technologies including Node.js and
-          GraphQL.
+          I excel in collaborative settings, applying agile practices to ensure
+          the delivery of top-tier products. My background covers full-stack
+          development, with a strong proficiency in modern web technologies.
         </p>
         <p>
-          When I'm not coding, you can find me exploring mountain trails,
-          experimenting with new recipes in the kitchen, or diving into a good
-          sci-fi novel.
+          Outside of work, I enjoy exploring new hobbies, staying active, and
+          delving into interesting books and articles.
         </p>
       </CardContent>
     </Card>

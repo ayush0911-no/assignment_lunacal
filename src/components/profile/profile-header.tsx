@@ -12,12 +12,12 @@ export function ProfileHeader() {
           alt="User Avatar"
           data-ai-hint={avatarImage?.imageHint}
         />
-        <AvatarFallback>JD</AvatarFallback>
+        <AvatarFallback>UR</AvatarFallback>
       </Avatar>
       <div>
-        <h1 className="text-3xl font-bold font-headline">John Doe</h1>
+        <h1 className="text-3xl font-bold font-headline">Your Name</h1>
         <p className="text-lg text-muted-foreground">
-          Senior Software Engineer
+          Your Title or Tagline
         </p>
       </div>
     </div>
