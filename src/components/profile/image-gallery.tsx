@@ -132,7 +132,7 @@ export function ImageGallery() {
         <div className="flex items-center gap-2">
           <Button
             onClick={triggerFileSelect}
-            variant="secondary"
+            variant="default"
             className="rounded-full shadow-[inset_0_2px_4px_0_rgba(255,255,255,0.05),0_4px_6px_rgba(0,0,0,0.1)] hover:shadow-[inset_0_2px_6px_0_rgba(255,255,255,0.06),0_6px_8px_rgba(0,0,0,0.15)]"
           >
             <ImagePlus className="mr-2 h-4 w-4" />
