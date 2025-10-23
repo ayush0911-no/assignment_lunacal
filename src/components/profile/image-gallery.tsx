@@ -1,9 +1,22 @@
 "use client";
 
-import { useState, useRef, useMemo } from "react";
+import {
+  useState,
+  useRef,
+  useMemo,
+  createContext,
+  useContext,
+  useCallback,
+} from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ImagePlus, Trash2, HelpCircle, ArrowLeft, ArrowRight, LayoutGrid, Square } from "lucide-react";
+import {
+  ImagePlus,
+  Trash2,
+  HelpCircle,
+  ArrowLeft,
+  ArrowRight,
+} from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import type { ImagePlaceholder } from "@/lib/placeholder-images";
 import { Card, CardContent } from "@/components/ui/card";
@@ -15,9 +28,41 @@ const initialImages = PlaceHolderImages.filter((img) =>
 
 type Layout = "grid" | "single";
 
+interface ImageGalleryContextType {
+  layout: Layout;
+  toggleLayout: () => void;
+}
+
+const ImageGalleryContext = createContext<ImageGalleryContextType | null>(null);
+
+export const ImageGalleryProvider: React.FC<{
+  children: React.ReactNode;
+}> = ({ children }) => {
+  const [layout, setLayout] = useState<Layout>("grid");
+  const toggleLayout = useCallback(() => {
+    setLayout((prev) => (prev === "grid" ? "single" : "grid"));
+  }, []);
+
+  return (
+    <ImageGalleryContext.Provider value={{ layout, toggleLayout }}>
+      {children}
+    </ImageGalleryContext.Provider>
+  );
+};
+
+export const useImageGallery = () => {
+  const context = useContext(ImageGalleryContext);
+  if (!context) {
+    throw new Error(
+      "useImageGallery must be used within an ImageGalleryProvider"
+    );
+  }
+  return context;
+};
+
 export function ImageGallery() {
   const [images, setImages] = useState<ImagePlaceholder[]>(initialImages);
-  const [layout, setLayout] = useState<Layout>("grid");
+  const { layout } = useImageGallery();
   const [currentIndex, setCurrentIndex] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -37,30 +82,26 @@ export function ImageGallery() {
   const triggerFileSelect = () => fileInputRef.current?.click();
 
   const removeImage = (id: string) => {
-    const imageToRemove = images.find(image => image.id === id);
-    if(imageToRemove && imageToRemove.id.startsWith('local-')) {
+    const imageToRemove = images.find((image) => image.id === id);
+    if (imageToRemove && imageToRemove.id.startsWith("local-")) {
       URL.revokeObjectURL(imageToRemove.imageUrl);
     }
-    setImages(images.filter(image => image.id !== id));
+    setImages(images.filter((image) => image.id !== id));
     if (currentIndex >= images.length - 1) {
       setCurrentIndex(Math.max(0, images.length - 2));
     }
   };
 
-  const toggleLayout = () => {
-    setLayout(prev => prev === "grid" ? "single" : "grid");
-  }
-
   const showNextImage = () => {
-    setCurrentIndex(prev => (prev + 1) % images.length);
-  }
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
 
   const showPrevImage = () => {
-    setCurrentIndex(prev => (prev - 1 + images.length) % images.length);
-  }
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   const visibleImages = useMemo(() => {
-    if (layout === 'single' && images.length > 0) {
+    if (layout === "single" && images.length > 0) {
       return [images[currentIndex]];
     }
     return images;
@@ -68,80 +109,101 @@ export function ImageGallery() {
 
   return (
     <div className="space-y-4 rounded-xl bg-card/50 p-4 border">
-        <input
-          type="file"
-          ref={fileInputRef}
-          onChange={handleImageUpload}
-          className="hidden"
-          accept="image/*"
-        />
-        <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-                 <Button variant="ghost" size="icon" className="text-muted-foreground">
-                    <HelpCircle className="h-5 w-5" />
-                 </Button>
-                 <div className="bg-primary text-primary-foreground font-semibold px-6 py-2 rounded-full text-sm">
-                    Gallery
-                 </div>
-            </div>
-            <div className="flex items-center gap-2">
-                <Button onClick={triggerFileSelect} variant="secondary" className="rounded-full">
-                    <ImagePlus className="mr-2 h-4 w-4" />
-                    Add Image
-                </Button>
-                <Button onClick={showPrevImage} variant="secondary" size="icon" className="rounded-full" disabled={layout === 'grid' || images.length < 2}>
-                    <ArrowLeft className="h-4 w-4" />
-                </Button>
-                <Button onClick={showNextImage} variant="secondary" size="icon" className="rounded-full" disabled={layout === 'grid' || images.length < 2}>
-                    <ArrowRight className="h-4 w-4" />
-                </Button>
-            </div>
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleImageUpload}
+        className="hidden"
+        accept="image/*"
+      />
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-muted-foreground"
+          >
+            <HelpCircle className="h-5 w-5" />
+          </Button>
+          <div className="bg-primary text-primary-foreground font-semibold px-6 py-2 rounded-full text-sm">
+            Gallery
+          </div>
         </div>
-      
-        <div className="flex gap-4">
-            <div className="flex flex-col gap-2 items-center">
-                <Button variant="ghost" size="icon" className="text-muted-foreground" onClick={toggleLayout} title="Toggle layout">
-                    {layout === 'grid' ? <Square className="h-5 w-5" /> : <LayoutGrid className="h-5 w-5" />}
-                </Button>
-            </div>
-            <div className={cn(
-              "w-full",
-              layout === 'grid' 
-                ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
-                : "flex justify-center"
-            )}>
-                {visibleImages.map((image) => (
-                    <div key={image.id} className={cn("p-1", layout === 'single' ? 'w-full max-w-lg' : '')}>
-                    <Card className="overflow-hidden group rounded-xl">
-                      <CardContent className="relative flex aspect-[4/3] items-center justify-center p-0">
-                        <Image
-                          src={image.imageUrl}
-                          alt={image.description}
-                          fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
-                          data-ai-hint={image.imageHint}
-                        />
-                         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <Button 
-                          variant="destructive" 
-                          size="icon" 
-                          className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10 rounded-full h-8 w-8"
-                          onClick={() => removeImage(image.id)}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                          <span className="sr-only">Remove Image</span>
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </div>
-                ))}
-                {images.length === 0 && (
-                  <div className="col-span-full flex items-center justify-center text-muted-foreground h-48">
-                    <p>No images in the gallery. Add some!</p>
-                  </div>
-                )}
-            </div>
+        <div className="flex items-center gap-2">
+          <Button
+            onClick={triggerFileSelect}
+            variant="secondary"
+            className="rounded-full"
+          >
+            <ImagePlus className="mr-2 h-4 w-4" />
+            Add Image
+          </Button>
+          <Button
+            onClick={showPrevImage}
+            variant="secondary"
+            size="icon"
+            className="rounded-full"
+            disabled={layout === "grid" || images.length < 2}
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </Button>
+          <Button
+            onClick={showNextImage}
+            variant="secondary"
+            size="icon"
+            className="rounded-full"
+            disabled={layout === "grid" || images.length < 2}
+          >
+            <ArrowRight className="h-4 w-4" />
+          </Button>
         </div>
+      </div>
+
+      <div
+        className={cn(
+          "w-full",
+          layout === "grid"
+            ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+            : "flex justify-center"
+        )}
+      >
+        {visibleImages.map((image) => (
+          <div
+            key={image.id}
+            className={cn(
+              "p-1",
+              layout === "single" ? "w-full max-w-lg" : ""
+            )}
+          >
+            <Card className="overflow-hidden group rounded-xl">
+              <CardContent className="relative flex aspect-[4/3] items-center justify-center p-0">
+                <Image
+                  src={image.imageUrl}
+                  alt={image.description}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  data-ai-hint={image.imageHint}
+                />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Button
+                  variant="destructive"
+                  size="icon"
+                  className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10 rounded-full h-8 w-8"
+                  onClick={() => removeImage(image.id)}
+                >
+                  <Trash2 className="h-4 w-4" />
+                  <span className="sr-only">Remove Image</span>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        ))}
+        {images.length === 0 && (
+          <div className="col-span-full flex items-center justify-center text-muted-foreground h-48">
+            <p>No images in the gallery. Add some!</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
