@@ -106,7 +106,7 @@ export function ImageGallery() {
       <Carousel
         opts={{
           align: "start",
-          loop: images.length > 3,
+          loop: true,
         }}
         className="w-full"
       >
@@ -126,8 +126,8 @@ export function ImageGallery() {
           <div className="flex items-center gap-2">
             <Button
               onClick={triggerFileSelect}
-              variant="primary"
-              className="rounded-full shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.05),0_4px_6px_rgba(0,0,0,0.1)] hover:shadow-[inset_0_2px_6px_0_rgba(0,0,0,0.06),0_6px_8px_rgba(0,0,0,0.15)] bg-primary text-primary-foreground hover:bg-primary/90"
+              variant="default"
+              className="rounded-full shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.05),0_4px_6px_rgba(0,0,0,0.1)] hover:shadow-[inset_0_2px_6px_0_rgba(0,0,0,0.06),0_6px_8px_rgba(0,0,0,0.15)] bg-card text-card-foreground hover:bg-card/80"
             >
               <ImagePlus className="mr-2 h-4 w-4" />
               Add Image
