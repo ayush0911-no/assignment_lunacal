@@ -1,5 +1,4 @@
 import { ImageGallery, ImageGalleryProvider } from "@/components/profile/image-gallery";
-import { ProfileHeader } from "@/components/profile/profile-header";
 import { ProfileTabs } from "@/components/profile/profile-tabs";
 
 export default function Home() {
@@ -11,7 +10,6 @@ export default function Home() {
           <div className="flex items-center justify-center p-4 md:p-8">
             <div className="w-full max-w-2xl mx-auto space-y-8">
               <div className="bg-card/50 rounded-xl border">
-                <ProfileHeader />
                 <ProfileTabs />
               </div>
               <ImageGallery />
