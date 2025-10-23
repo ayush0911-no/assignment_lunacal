@@ -10,12 +10,8 @@ export default function Home() {
   return (
     <ImageGalleryProvider>
       <main className="container mx-auto p-4 md:p-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-          {/* Empty left column on medium screens and up */}
-          <div className="hidden md:block"></div>
-
-          <div className="w-full space-y-8">
-            <div>
+        <div className="w-full max-w-3xl mx-auto space-y-8">
+            <div className="bg-card/50 rounded-xl border p-4">
               <Tabs defaultValue="about" className="w-full">
                 <TabsList className="grid w-full grid-cols-3 shadow-lg">
                   <TabsTrigger value="about">
@@ -42,7 +38,6 @@ export default function Home() {
             <div>
               <ImageGallery />
             </div>
-          </div>
         </div>
       </main>
     </ImageGalleryProvider>
