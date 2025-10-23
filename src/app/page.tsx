@@ -1,7 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { User, Briefcase, ThumbsUp } from "lucide-react";
 
-import { ProfileHeader } from "@/components/profile/profile-header";
 import { ImageGallery } from "@/components/profile/image-gallery";
 import { AboutTab } from "@/components/profile/about-tab";
 import { ExperiencesTab } from "@/components/profile/experiences-tab";
@@ -12,7 +11,6 @@ export default function Home() {
     <main className="container mx-auto p-4 md:p-8">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         <div className="lg:col-span-1 space-y-8">
-          <ProfileHeader />
           <ImageGallery />
         </div>
 
