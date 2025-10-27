@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'Assigment',
+  title: 'Assignment',
   description: 'Assignment project using Next.js and Tailwind CSS',
 };
 
