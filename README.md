@@ -39,6 +39,6 @@ It includes a smooth **tab navigation system**, animated **image gallery hover e
 ### 1️⃣ Install Dependencies
 ```bash
 npm install
-
+.
 
 
