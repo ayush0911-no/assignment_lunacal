@@ -1,11 +1,9 @@
-import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { HelpCircle } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const recommendations = [
@@ -25,31 +23,28 @@ const recommendations = [
 
 export function RecommendedTab() {
   return (
-    <div className="grid gap-6 md:grid-cols-2">
-      {recommendations.map((rec, index) => (
-        <Card key={index} className="flex flex-col bg-card/50 hover:bg-card/70 transition-colors">
-          <CardHeader className="flex-row gap-4 items-center">
-             {rec.image && (
-                <div className="relative w-[60px] h-[90px] flex-shrink-0">
-                  <Image
-                    src={rec.image.imageUrl}
-                    alt={rec.title}
-                    fill
-                    className="rounded-md object-cover"
-                    data-ai-hint={rec.image.imageHint}
-                  />
-                </div>
-              )}
-            <div>
-              <CardTitle>{rec.title}</CardTitle>
-              <CardDescription>{rec.author}</CardDescription>
+    <div className="flex gap-4">
+      <div className="flex flex-col gap-4 items-center">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="text-muted-foreground"
+        >
+          <HelpCircle className="h-5 w-5" />
+        </Button>
+      </div>
+      <ScrollArea className="h-48 pr-4">
+        <div className="space-y-6 text-muted-foreground">
+          {recommendations.map((rec, index) => (
+            <div key={index}>
+              <p className="font-semibold text-card-foreground">
+                {rec.title} - <span className="font-normal text-muted-foreground">{rec.author}</span>
+              </p>
+              <p className="text-sm mt-1">{rec.description}</p>
             </div>
-          </CardHeader>
-          <CardContent className="flex-grow">
-            <p className="text-sm text-muted-foreground">{rec.description}</p>
-          </CardContent>
-        </Card>
-      ))}
+          ))}
+        </div>
+      </ScrollArea>
     </div>
   );
 }

@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'Dynamic Profile',
-  description: 'A dynamic personal profile page created with Next.js.',
+  title: 'Assigment',
+  description: 'Assignment project using Next.js and Tailwind CSS',
 };
 
 export default function RootLayout({

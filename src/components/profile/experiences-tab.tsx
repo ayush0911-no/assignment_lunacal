@@ -15,20 +15,8 @@ const experiences = [
     description: "Led the development of a cutting-edge platform, focusing on scalable architecture and continuous integration. Provided mentorship to team members and promoted best practices in software development.",
     skills: ["React", "Next.js", "TypeScript", "Node.js", "Cloud Services", "DevOps"],
   },
-  {
-    title: "Software Developer",
-    company: "Digital Dynamics",
-    period: "2018 - 2021",
-    description: "Contributed to the development and enhancement of a major e-commerce platform. Achieved significant performance improvements through code optimization and database enhancements.",
-    skills: ["JavaScript", "React", "State Management", "REST APIs", "SQL"],
-  },
-  {
-    title: "Junior Engineer",
-    company: "Innovate Start",
-    period: "2016 - 2018",
-    description: "Gained hands-on experience in building responsive user interfaces and backend services for various projects. Developed a strong foundation in web technologies and version control systems.",
-    skills: ["HTML", "CSS", "JavaScript", "Backend Basics", "Git"],
-  },
+  
+  
 ];
 
 export function ExperiencesTab() {

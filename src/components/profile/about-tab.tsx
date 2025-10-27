@@ -18,24 +18,19 @@ export function AboutTab() {
         </Button>
       </div>
 
-      <ScrollArea className="h-48 pr-4">
+      
         <div className="space-y-4 text-muted-foreground">
           <p>
             Hello! I'm Dave, your sales rep here from Salesforce. I've been
-            working at this awesome company for 3 years now.
+            working at this awesome company for 3 years now. 
           </p>
           <p>
-            I was born and raised in Albany, NY& have been living in Santa
-            Carla for the past 10 years my wife Tiffany and my 4 year old twin
-            daughters- Emma and Ella. Both of them are just starting school,
-            so my calender is usually blocked between 9–10 AM. This is a...
-          </p>
-          <p>
-            Outside of work, I enjoy exploring new hobbies, staying active, and
-            delving into interesting books and articles.
+            I was born and raised in Albany, NY & have been living in Santa
+            Carla for the past 10 years with my wife Tiffany and my 4 year old twin
+            daughters- Emma and Ella.
           </p>
         </div>
-      </ScrollArea>
+      
     </div>
   );
 }
