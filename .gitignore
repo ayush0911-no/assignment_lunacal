@@ -35,5 +35,5 @@ next-env.d.ts
 .yarn/
 .pnp
 .pnp.*
-
+.
 
